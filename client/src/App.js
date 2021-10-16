@@ -10,16 +10,20 @@ import {
   Link
 } from "react-router-dom";
 import { Detail } from './Views/Detail';
+import { Update } from './Views/Update';
 function App() {
   return (
     <div className="App">
       <Router>
       <Switch>
-      <Route path="/product/:id">
+        <Route path="/product/:id">
             <Detail />
           </Route> 
           <Route exact path="/product">
             <Main />
+          </Route>
+          <Route  path="/edit/:id">
+            <Update />
           </Route>
                    
         </Switch>

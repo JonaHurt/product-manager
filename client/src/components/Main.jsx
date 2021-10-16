@@ -5,6 +5,7 @@ import { ProductForm } from './ProductForm'
 
 export const Main = () => {
     const [product, setProduct] = useState([])
+    
     useEffect(()=>{
         axios.get('http://localhost:8000/api/product/list')
             .then(res=>{
@@ -12,10 +13,17 @@ export const Main = () => {
                 //setLoaded(true);
             });
     },[])
+    const removeFromDom = ProductId => {
+        setProduct(product.filter(product => {
+            return product._id != ProductId
+        }));
+    }
     return (
         <div>
             <ProductForm />
-            <ListProduc product={product}/>
+            <ListProduc product={product} removeFromDom={removeFromDom}/>
         </div>
     )
 }
+
+export default Main
