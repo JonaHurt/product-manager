@@ -15,7 +15,19 @@ module.exports.createProduct = (request, response) => {
     .catch(err => response.json(err));
 }
 
+module.exports.findDetail = (request, response) => {
+   
+    Product.findById({_id:request.params.id}).then(product => response.json(product))
+    .catch(err => response.json(err));
+}
+/*
+module.exports.findDetail = (request, response) => {
+    const _id = request.params.id;
+    Product.findById({_id}).then(product => response.json(product))
+    .catch(err => response.json(err));
+}*/
 module.exports.findAllProduct = (request, response) => {
     Product.find({}).then(product => response.json(product))
     .catch(err => response.json(err));
 }
+

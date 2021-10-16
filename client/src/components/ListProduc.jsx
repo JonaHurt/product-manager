@@ -1,23 +1,20 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
-
-export const ListProduc = () => {
-    const [product, setProduct] = useState([])
-    useEffect(()=>{
-        axios.get('http://localhost:8000/api/product')
-            .then(res=>{
-                setProduct(res.data);
-                //setLoaded(true);
-            });
-    },[])
+import {
+    BrowserRouter as Router,
+    Switch,
+    Route,
+    Link
+  } from "react-router-dom";
+export const ListProduc = ({product}) => {
     console.log(product);
     return (
         <div>
             <ul>
             {
                 product?.map((product, l) =>
-                {
-                   return <li key={l}> {product.title} {product.price} {product.description}</li> 
+                {   
+                   return  <li key={l}> <Link to={"/product/"+product._id} >{product.title} {product.price} {product.description} </Link></li> 
                 }
                 )
             }
